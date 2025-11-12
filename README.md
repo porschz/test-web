@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### use `npm install --legacy-peer-deps`
+
+library i18next has some issues with node v.24
+
 ## Available Scripts
 
 In the project directory, you can run:
