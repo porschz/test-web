@@ -17,6 +17,8 @@ $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .app {
   min-height: 100vh;
   background-color: $bg-light;
+  display: flex;
+  flex-direction: column;
 }
 
 // Navbar
@@ -270,12 +272,12 @@ $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  width: 100%;
+  padding: 0;
 
   @media (min-width: 769px) {
     margin-left: 320px;
+    width: calc(100% - 320px);
   }
 }
 
