@@ -15,9 +15,22 @@ const App = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const [information, setInformation] = useState(data);
+  const [profileImage, setProfileImage] = useState("");
 
   useEffect(() => {
     setInformation(data);
+    const savedImage = localStorage.getItem("profileImage");
+    setProfileImage(savedImage || data.imageUrl);
+
+    const handleProfileImageChange = (event) => {
+      setProfileImage(event.detail);
+    };
+
+    window.addEventListener('profileImageChanged', handleProfileImageChange);
+
+    return () => {
+      window.removeEventListener('profileImageChanged', handleProfileImageChange);
+    };
   }, []);
 
   const toggleLanguage = () => {
@@ -58,6 +71,34 @@ const App = () => {
     }
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Please select a valid image file");
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Image size should be less than 5MB");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageDataUrl = reader.result;
+        setProfileImage(imageDataUrl);
+        localStorage.setItem("profileImage", imageDataUrl);
+        window.dispatchEvent(new CustomEvent('profileImageChanged', { detail: imageDataUrl }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleProfileImageClick = () => {
+    document.getElementById('navbar-image-upload').click();
+  };
+
   return (
     <div className="app">
       <nav className="navbar">
@@ -68,11 +109,36 @@ const App = () => {
             </Link>
           </div>
 
-          <button className="hamburger" onClick={toggleSidebar} aria-label="Toggle menu">
-            <span className={sidebarOpen ? 'active' : ''}></span>
-            <span className={sidebarOpen ? 'active' : ''}></span>
-            <span className={sidebarOpen ? 'active' : ''}></span>
-          </button>
+          <div className="navbar-actions">
+            <div className="profile-section">
+              <img
+                src={profileImage}
+                alt={information.name}
+                className="profile-image clickable"
+                onClick={handleProfileImageClick}
+                title="Click to change profile picture"
+              />
+              <input
+                id="navbar-image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+              <span className="profile-name">{information.name}</span>
+            </div>
+
+            <button className="language-button" onClick={toggleLanguage} aria-label="Change language">
+              <span className="language-icon">🌐</span>
+              <span className="language-text">{i18n.language === 'en' ? 'ไทย' : 'English'}</span>
+            </button>
+
+            <button className="hamburger" onClick={toggleSidebar} aria-label="Toggle menu">
+              <span className={sidebarOpen ? 'active' : ''}></span>
+              <span className={sidebarOpen ? 'active' : ''}></span>
+              <span className={sidebarOpen ? 'active' : ''}></span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -99,14 +165,9 @@ const App = () => {
               {t("Create")}
             </Link>
           </div>
-          <div className="sidebar-divider"></div>
           <button className="sidebar-link" onClick={openCurrentLocation}>
             <span className="link-icon">📍</span>
             {t("Current Location")}
-          </button>
-          <button className="sidebar-button" onClick={() => { toggleLanguage(); closeSidebar(); }}>
-            <span className="link-icon">🌐</span>
-            {i18n.language === 'en' ? 'ไทย' : 'English'}
           </button>
         </nav>
       </aside>

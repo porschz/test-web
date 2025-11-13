@@ -11,6 +11,16 @@ const Home = () => {
     setProfile(profileData);
     const savedImage = localStorage.getItem("profileImage");
     setProfileImage(savedImage || profileData.imageUrl);
+
+    const handleProfileImageChange = (event) => {
+      setProfileImage(event.detail);
+    };
+
+    window.addEventListener('profileImageChanged', handleProfileImageChange);
+
+    return () => {
+      window.removeEventListener('profileImageChanged', handleProfileImageChange);
+    };
   }, []);
 
   const { t } = useTranslation();
@@ -34,6 +44,7 @@ const Home = () => {
         const imageDataUrl = reader.result;
         setProfileImage(imageDataUrl);
         localStorage.setItem("profileImage", imageDataUrl);
+        window.dispatchEvent(new CustomEvent('profileImageChanged', { detail: imageDataUrl }));
       };
       reader.readAsDataURL(file);
     }
