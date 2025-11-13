@@ -1,5 +1,15 @@
 {
-    "name": "John Doe",
+    "name": "Admin Test",
     "age": 30,
-    "email": "john.doe@example.com"
+    "email": "admin@test.com",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStvL8kNVKvJskGpi8do02RNw2bn3sKxTTJ2g&s",
+    "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA",
+        "zip": "12345"
+    },
+    "phoneNumber": "(123) 456-7890",
+    "line": "admin_test"
+
 }

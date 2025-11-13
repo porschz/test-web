@@ -1,5 +1,15 @@
 {
     "Home": "Home",
-    "welcomeMessage": "Welcome to our app!",
-    "greeting": "Hello, {{name}}!"
+    "Contact": "Contact",
+    "List": "List",
+    "Create": "Create",
+    "Current Location": "Current Location",
+    "welcomeMessage": "Welcome",
+    "greeting": "Hello, {{name}}!",
+    "Contact Us": "Contact Us",
+    "Address": "Address",
+    "Phone": "Phone",
+    "Email": "Email",
+    "LINE": "LINE",
+    "All rights reserved": "All rights reserved"
 }

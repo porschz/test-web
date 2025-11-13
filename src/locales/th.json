@@ -1,5 +1,15 @@
 {
     "Home": "หน้าแรก",
-    "welcomeMessage": "ยินดีต้อนรับสู่แอปของเรา!",
-    "greeting": "สวัสดี, {{name}}!"
+    "Contact": "ติดต่อ",
+    "List": "รายการ",
+    "Create": "สร้าง",
+    "Current Location": "ตำแหน่งปัจจุบัน",
+    "welcomeMessage": "ยินดีต้อนรับ",
+    "greeting": "สวัสดี, {{name}}!",
+    "Contact Us": "ติดต่อเรา",
+    "Address": "ที่อยู่",
+    "Phone": "โทรศัพท์",
+    "Email": "อีเมล",
+    "LINE": "ไลน์",
+    "All rights reserved": "สงวนลิขสิทธิ์"
 }
