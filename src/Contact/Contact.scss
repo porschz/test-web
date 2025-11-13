@@ -1,0 +1,258 @@
+.contact-create-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .contact-create-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .contact-form {
+    .form-group {
+      margin-bottom: 20px;
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+        font-size: 14px;
+
+        .required {
+          color: #e74c3c;
+          margin-left: 4px;
+        }
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+          box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        &.error {
+          border-color: #e74c3c;
+
+          &:focus {
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+          }
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      .error-message {
+        display: block;
+        margin-top: 6px;
+        color: #e74c3c;
+        font-size: 13px;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 32px;
+
+      button {
+        padding: 10px 24px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .btn-cancel {
+        background-color: #95a5a6;
+        color: white;
+
+        &:hover {
+          background-color: #7f8c8d;
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+
+      .btn-submit {
+        background-color: #3498db;
+        color: white;
+
+        &:hover {
+          background-color: #2980b9;
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+
+  // Modal styles
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease;
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  .modal-header {
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto;
+      stroke-width: 2;
+    }
+
+    &.success {
+      .modal-icon {
+        color: #27ae60;
+      }
+    }
+
+    &.error {
+      .modal-icon {
+        color: #e74c3c;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 24px;
+    text-align: center;
+
+    .modal-title {
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .modal-message {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  .modal-footer {
+    padding: 16px 24px 24px;
+    text-align: center;
+
+    .modal-button {
+      padding: 10px 32px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 100px;
+
+      &:hover {
+        background-color: #2980b9;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .contact-create-container {
+    padding: 16px;
+
+    .contact-create-title {
+      font-size: 24px;
+    }
+
+    .contact-form {
+      .form-actions {
+        flex-direction: column-reverse;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .modal-content {
+      width: 95%;
+    }
+  }
+}
